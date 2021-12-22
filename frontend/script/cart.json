@@ -1,0 +1,9 @@
+{
+    "_id":"cart_0001",
+    "user_id": "user_0001",
+    "food_id": [
+        "Blacktea",
+        "Greentea",
+        "Barleytea"
+    ]
+}
