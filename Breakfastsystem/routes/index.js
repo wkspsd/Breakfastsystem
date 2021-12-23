@@ -1,9 +1,8 @@
 var express = require('express');
+const req = require('express/lib/request');
 var router = express.Router();
+var userfunction=require('./userfunction');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.POST('/user_register', userfunction.register);
 
 module.exports = router;
