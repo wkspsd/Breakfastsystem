@@ -1,9 +1,9 @@
 var express = require('express');
+const req = require('express/lib/request');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+var userfunction=require('./userfunction');
+//---------------------------------------------------------------------------------
+router.post('/reg', userfunction.register);
+router.post('/check_login',userfunction.check_login);
 
 module.exports = router;
