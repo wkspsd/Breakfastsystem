@@ -10,6 +10,7 @@ exports.register=function(req,res){
         if(result)//帳號已存在
         {
             console.log("user_accout exist");
+            res.send({success:false});
             res.redirect('./reg.html');
         }
         else//帳號不存在
@@ -24,6 +25,7 @@ exports.register=function(req,res){
                 console.log(err);
             })
             console.log("user: "+req.body.username+" create!");
+            res.send({success:true});
             res.redirect('index.html');
         }
     })
@@ -41,10 +43,11 @@ exports.check_login=function(req,res){
         usermodel.findOne({account:{$eq:req.body.account},password:{$eq:req.body.password}},function(err,result)
         {
             if(err) throw err;
-            if(result)
+            if(result)//如果找得到符合比對的資料
             {
                 console.log("login success");
                 req.session.user=result.account;
+                console.log(req.session.user);
                 res.redirect('/menu.html');
             }
             else
@@ -54,4 +57,10 @@ exports.check_login=function(req,res){
             }
         });
     }
+}
+
+//登出
+exports.logout=function(req,res){
+    req.session.destroy();
+    res.redirect('index.html');
 }

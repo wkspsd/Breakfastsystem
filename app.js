@@ -21,6 +21,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use(session({
+  secret:"Breakfastsystem",
+  Store:MongoStore.create({mongoUrl:'mongodb://127.0.0.1:27017/breakfastsystem'}),
+  cookie:{maxAge:1000*60*60},
+  resave: false,
+  saveUninitialized: false
+}));
+
 app.use('/', indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -38,13 +47,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.use(session({
-  secret:"Breakfastsystem",
-  Store:MongoStore.create({mongoUrl:'mongodb://127.0.0.1:27017/breakfastsystem'}),
-  cookie:{maxAge:60*1000*60},
-  resave: false,
-  saveUninitialized: false
-}));
 
 mongoose.connect('mongodb://127.0.0.1:27017/breakfastsystem');
 
