@@ -6,9 +6,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link href="/style.css" rel="stylesheet" type="text/css">
+    <link href="../style.css" rel="stylesheet" type="text/css">
 
-    <title>登入</title>
+    <title>設定</title>
 
     <meta charset="utf-8">
 
@@ -29,41 +29,32 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    
-    <link rel="stylesheet"
-        href="https://des13.com/plugins/system/zo2/framework/assets/vendor/bootstrap/css/bootstrap.min.css">
 </head>
 
 <body id="main">
 
-    <center><div id="login">
-        <h1><img src="../image/font.jpg"></h1>
-        <h4>新豐街早餐店</h4>
-        <form action="/check_login" method="POST">
-            <div class="form-group">
+    <div id="regis">
 
-                <input type="text" id="AC" name="account"class="form-control" placeholder="帳號 ( Account )" required autofocus>
-
-                <input type="password" id="PW" name="password"class="form-control" placeholder="密碼 ( Password )" required>
-
+        <h4>建立您的帳戶</h4>
+        <form action="" method="POST">
+            <label>性別: </label>
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" name="" id="gendermale" value="男">
+                <label class="form-check-label" for="gendermale">男</label>
             </div>
 
-            <input type="submit" class="btn btn-lg btn-primary btn-light btn-block" value="登入" >
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" name="" id="genderfemale" value="女">
+                <label class="form-check-label" for="genderfemale">女</label>
+            </div>
 
+            <div class="form-group">
+                <input type="email" id="EM" class="form-control" placeholder="電子信箱 ( Email address )" required autofocus>
+                <input type="password" id="PW" class="form-control" placeholder="密碼 ( Password )" required>
+            </div>
         </form>
-        <div class="btn-group btn-block">
-            <input type="button" class="btn btn-block btn-lg btn-primary btn-light" value="註冊"
-                onclick="window.open('reg.html')">
-        </div>
+    </div>
 
-    </div></center>
-    <br><br><br><br><br><br><br><br><br><br>
-        
-        
-        <hr></hr>
-       
-        <br><br>
 </body>
 
 </html>

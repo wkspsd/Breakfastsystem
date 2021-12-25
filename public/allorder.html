@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html>
@@ -9,7 +8,7 @@
 
     <link href="../style.css" rel="stylesheet" type="text/css">
 
-    <title>歷史訂單</title>
+    <title>全部訂單</title>
 
     <meta charset="utf-8">
 
@@ -29,6 +28,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src="../script/bossFunction.js"></script>
+    <script src="https://npmcdn.com/jquery@3.1.0"></script>
+    <script>
+        $(function () {
+            var date_now = new Date();
+
+            var year = date_now.getFullYear();
+
+            var month = date_now.getMonth() + 1 < 10 ? "0" + (date_now.getMonth() + 1) : (date_now.getMonth() + 1);
+
+            var date = date_now.getDate() < 10 ? "0" + date_now.getDate() : date_now.getDate();
+            $("#birthday").attr("max", year + "-" + month + "-" + date);
+            $("#birthday").val(year + "-" + month + "-" + date);
+        })
+    </script>
+    <script>
+        window.onload = AllorderInit();
+    </script>
 
     <script type="text/javascript">
         var socket;
@@ -39,19 +56,22 @@
             var HOST = location.origin.replace(/^https/, 'ws')
             socket = new WebSocket(HOST);
             socket.onmessage = function (event) {
-                alert(event.data);
+                if(confirm(event.data)==true)
+                    window.location.replace("/accept");
+                else
+                    window.location.replace("/refuse");
             };
             socket.onopen = function (event) {
                 var str=document.cookie;
-                    var strary=str.split(';');
-                    console.log(strary[1].indexOf('connect.sid='));
-                    console.log(strary[0].indexOf('connect.sid='));
-                    if(strary[0].indexOf('connect.sid=')==1)
-                    {    
-                        this.send(strary[1]);
-                    }
-                    else if(strary[1].indexOf('connect.sid=')==1)
-                        this.send(strary[0]);
+                var strary=str.split(';');
+                console.log(strary[1].indexOf('connect.sid='));
+                console.log(strary[0].indexOf('connect.sid='));
+                if(strary[0].indexOf('connect.sid=')==1)
+                {    
+                    this.send(strary[1]);
+                }
+                else if(strary[1].indexOf('connect.sid=')==1)
+                    this.send(strary[0]);
             };
             socket.onclose = function (event) {
             };
@@ -64,12 +84,12 @@
 </head>
 
 <body id="main">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" >
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
             aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <img class= "img-responsive" src="../image/font.jpg" id="brand">
+        <img class="img-responsive" src="../image/font.jpg" id="brand">
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
@@ -81,18 +101,28 @@
             </ul>
         </div>
     </nav>
-    <form action="" method="post">
-    <div align="center" style="font-size:50px; margin-top:20% ;">輸入查詢時段</div>
-    <div align="center"><input type="time" name="Start_time"style="width: 45%">~<input type="time" name="End_time" style="width:45%"></div>
-    <div align="center" style="font-size:50px;">輸入查詢日期</div>
-    <div align="center"><input type="date" name="Start_date" style="width: 45%;">~<input type="date" name="End_date"style="width: 45%;"></div>
-    <div align="center" style="font-size:50px;">輸入年齡範圍</div>
-    <div align="center"><input type="number" name="Start_age" style="width: 45%;" >~<input type="number" name="End_age" style="width: 45%;"></div>
-    <div align="center" style="font-size:50px;">輸入查詢性別</div>
-    <div align="center"><input type="button" name="gender" style="width: 45%;" value="男" ><input type="button" name="gender" style="width: 45%;" value="女"></div>
-    <input type="submit" class="btn btn-warning" style="position: absolute;bottom: 0px;left: 0px;" value="確定">
-    </form>
-    <button type="button" onclick="window.location='manage.html'" class="btn btn-warning" style="position: absolute;bottom: 0px;right: 0px;">取消</button>
+    <p style="margin-top: 20%; font-size:30px"></p>
+    <!-- <form method="" action="">
+        <center><input type="date" id="birthday" value="date">
+            <input type="submit" value="查詢">
+        </center>
+    </form> -->
+    <!-- <table style="width: 100%;" id="All_table">
+        <tbody id="All_body">
+            <tr>
+                <td align="center">
+                    已完成訂單
+                </td>
+            </tr>
+        </tbody>
+    </table> -->
+    <div id="All_order" style="margin-top: 3%;">
+
+    </div>
+            <div>
+                <button type="button" onclick="window.location='manage.html'" class="btn btn-warning"
+                    style="position: absolute;bottom: 0px;right: 0px;">取消</button>
+            </div>
 </body>
 
 </html>
