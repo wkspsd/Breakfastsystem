@@ -10,7 +10,7 @@ exports.register=function(req,res){
         if(result)//帳號已存在
         {
             console.log("user_accout exist");
-            res.send({success:false});
+            //res.send({success:false});
             res.redirect('./reg.html');
         }
         else//帳號不存在
@@ -25,7 +25,7 @@ exports.register=function(req,res){
                 console.log(err);
             })
             console.log("user: "+req.body.username+" create!");
-            res.send({success:true});
+            //res.send({success:true});
             res.redirect('index.html');
         }
     })
