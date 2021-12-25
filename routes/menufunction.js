@@ -25,7 +25,7 @@ exports.editmenuplus=function(req,res){
             console.log("add success");
         }
     });
-    res.redirect('editmenuplus.html')
+    res.redirect('editmenu.html')
 }
 
 exports.delete_single=function(req,res){
