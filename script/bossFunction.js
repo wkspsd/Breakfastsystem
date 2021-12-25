@@ -97,7 +97,7 @@ function editInit() {
     request.onload = function () {
         var json = JSON.parse(request.response);
         document.getElementById("food_id").value = localStorage.getItem("id");
-        document.getElementById("name").value = localStorage.getItem("name");
+        document.getElementById("food_name").value = localStorage.getItem("name");
         document.getElementById("description").value = localStorage.getItem("description");
         document.getElementById("price").value = localStorage.getItem("price");
         document.getElementById("delete_id").value = localStorage.getItem("id");
