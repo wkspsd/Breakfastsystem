@@ -1,15 +1,14 @@
 const { json } = require('express/lib/response');
 const singlemodel=require('./model/single');
 
-
+//獲取全部餐點資料
 exports.get_menu=function(req,res){
     singlemodel.find({},function(err,result){
         console.log(result);
-        console.log(json(result));
+        res.send(result);
     });
-    res.json(result);
 }
-
+//新增餐點
 exports.editmenuplus=function(req,res){
     singlemodel.create({
         food_name:req.body.foodname,
@@ -27,7 +26,7 @@ exports.editmenuplus=function(req,res){
     });
     res.redirect('editmenu.html')
 }
-
+//店家刪除餐點
 exports.delete_single=function(req,res){
     singlemodel.findByIdAndDelete(req.body.delete_id,function(err){
         if(err){
