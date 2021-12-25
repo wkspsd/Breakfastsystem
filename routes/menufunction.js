@@ -29,7 +29,7 @@ exports.editmenuplus=function(req,res){
 }
 
 exports.delete_single=function(req,res){
-    singlemodel.findByIdAndDelete(req.body.food_id,function(err){
+    singlemodel.findByIdAndDelete(req.body.delete_id,function(err){
         if(err){
             console.log(err);
         }
