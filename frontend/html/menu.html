@@ -36,9 +36,10 @@
             window.WebSocket = window.MozWebSocket;
         }
         if (window.WebSocket) {
-            var HOST = location.origin.replace(/^https/, 'ws')
-            socket = new WebSocket(HOST);
-            socket.onmessage = function (event) {
+            //var HOST = location.origin.replace(/^https/, 'ws')
+            socket = new WebSocket('ws://localhost:27017');
+            console.log(socket);
+            /*socket.onmessage = function (event) {
                 alert(event.data);
             };
             socket.onopen = function (event) {
@@ -52,7 +53,7 @@
                     }
                     else if(strary[1].indexOf('connect.sid=')==1)
                         this.send(strary[0]);
-            };
+            };*/
             socket.onclose = function (event) {
             };
         } 
@@ -84,13 +85,17 @@
                     <a class="nav-link " href="menu.html">菜單 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">登出</a>
+                    <a class="nav-link" onclick="logout()" href="/logout">登出</a>
                 </li>
             </ul>
         </div>
     </nav>
     <script>
         window.onload = init();
+        function logout()
+        {
+            $.post('/logout',{});
+        }
     </script>
     <form id="cart" action="tobackend"></form>
 </body>
