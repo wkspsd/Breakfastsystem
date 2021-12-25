@@ -62,4 +62,5 @@ exports.check_login=function(req,res){
 //登出
 exports.logout=function(req,res){
     req.session.destroy();
+    res.redirect('index.html');
 }
