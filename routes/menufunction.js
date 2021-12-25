@@ -28,7 +28,7 @@ exports.editmenuplus=function(req,res){
 }
 //店家刪除餐點
 exports.delete_single=function(req,res){
-    singlemodel.findByIdAndDelete(req.body.food_id,function(err){
+    singlemodel.findByIdAndDelete(req.body.delete_id,function(err){
         if(err){
             console.log(err);
         }
