@@ -27,13 +27,13 @@ function init() {
       div[i] = document.createElement("div");
       image[i] = document.createElement("img");
       var foodName = document.createElement("div");
-      image[i].src = `../image/plus.png`;
+      image[i].src = `./image/plus.png`;
       image[i].style = "width: 100%";
       div[i].appendChild(image[i]);
       foodName.style = "width:100%; background-color:black; opacity:0.5; position:relative; word-wrap:break-word; color:white";
-      foodName.innerHTML = "<center>" + json[i].food_name + "$" + json[i].price + "</center>";
+      foodName.innerHTML = "<center>" + json[i].foodname + "$" + json[i].price + "</center>";
       div[i].appendChild(foodName);
-      div[i].setAttribute("food", json[i].food_name);
+      div[i].setAttribute("food", json[i].foodname);
       div[i].setAttribute("price", json[i].price);
       if (i % 2 == 0) {
         div[i].style =
@@ -42,7 +42,7 @@ function init() {
         div[i].style =
           "width: 25%; border-width:3px;border-style:solid;border-color:black;padding:5px; float:right;margin-right: 15%; margin-top: 20%;";
       }
-      div[i].id = json[i]._id;
+      div[i].id = json[i].id;
       div[i].setAttribute("onclick", `showDes(${i})`);
       div[i].setAttribute("unclick", `recover(${i})`);
       menu.appendChild(div[i]);
@@ -60,7 +60,7 @@ function init() {
       div[i] = document.createElement("div");
       image[i] = document.createElement("img");
       var foodName = document.createElement("div");
-      image[i].src = `../image/plus.png`;
+      image[i].src = `./image/plus.png`;
       image[i].style = "width: 100%";
       div[i].appendChild(image[i]);
       foodName.style =
@@ -146,7 +146,7 @@ function addDish(i) {
 
 function addAlreadyDish(i) {
   var cart = document.getElementById("cart");
-  var alreadyDish = document.getElementById(`div[${i}].food_name`);
+  var alreadyDish = document.getElementById(`div[${i}].foodname`);
   var temp = +div[i].getAttribute("num");
   ++temp;
   localStorage.setItem(div[i].getAttribute("food"), temp);
@@ -334,7 +334,7 @@ function orderInit() {
       var tr_food = document.createElement("tr");
       tr_food.id = `${i}`;
       var td_food_name = document.createElement("td");
-      td_food_name.innerText = json[0].food_id[i].name;
+      td_food_name.innerText = json[0].foodid[i].name;
       var td_food_number = document.createElement("td");
       td_food_number.innerText = json[0].food_id[i].amount;
       tr_food.appendChild(td_food_name);
@@ -373,7 +373,7 @@ function calCost(d, flag) {
         continue;
       }
       for (var j = 0; j < json.length; j++) {
-        if (localStorage.key(i) == json[j].food_name) {
+        if (localStorage.key(i) == json[j].foodname) {
           lastCost += parseInt(json[j].price * localStorage.getItem(localStorage.key(i)), 10);
         }
       }

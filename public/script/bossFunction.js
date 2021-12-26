@@ -26,7 +26,7 @@ function init() {
             var font = document.createElement("div");
             div[i] = document.createElement("div");
             image[i] = document.createElement("img");
-            image[i].src = "../image/plus.png";
+            image[i].src = "./image/plus.png";
             image[i].style = "width: 100%";
             div[i].appendChild(image[i]);
             if (i % 2 == 0) {
@@ -51,7 +51,7 @@ function init() {
         var plusfont = document.createElement("div");
         plusfont.style = "width:100%;background-color:black;opacity:0.5;position:relative; word-wrap:break-word;color:white";
         plusfont.innerHTML = "<center>新增餐點";
-        plusImg.src = "../image/plus.png";
+        plusImg.src = "./image/plus.png";
         plusImg.style = "width: 100%";
         plusMenu.appendChild(plusImg);
         plusMenu.appendChild(plusfont);
@@ -85,8 +85,8 @@ function check() {
 
 function edit(i) {
     var json = JSON.parse(request.response);
-    localStorage.setItem("id", json[i]._id);
-    localStorage.setItem("food_name", json[i].food_name);
+    localStorage.setItem("id", json[i].id);
+    localStorage.setItem("foodname", json[i].foodname);
     localStorage.setItem("description", json[i].description);
     localStorage.setItem("price", json[i].price);
     window.location.replace("editmenumiddle.html", "編輯餐點");
@@ -96,11 +96,11 @@ function editInit() {
     request.open("GET", url, true);
     request.onload = function () {
         var json = JSON.parse(request.response);
-        document.getElementById("food_id").value = localStorage.getItem("id");
-        document.getElementById("food_name").value = localStorage.getItem("food_name");
+        document.getElementById("foodid").value = localStorage.getItem("id");
+        document.getElementById("foodname").value = localStorage.getItem("foodname");
         document.getElementById("description").value = localStorage.getItem("description");
         document.getElementById("price").value = localStorage.getItem("price");
-        document.getElementById("delete_id").value = localStorage.getItem("id");
+        document.getElementById("deleteid").value = localStorage.getItem("id");
         console.log(json);
     };
     request.send(null);
@@ -252,7 +252,7 @@ function state(i) {
 
 function singleState(i, j) {
     var json = JSON.parse(request.response);
-    window.location.replace(mainURL + `/mark_as_done?order_id=${json[i].order_num}&item=${json[i].food_id[j]._id}`)
+    window.location.replace(mainURL + `/mark_as_done?order_id=${json[i].order_num}&item=${json[i].foodid[j].id}`)
 }
 
 function AllorderInit() {
@@ -270,11 +270,11 @@ function AllorderInit() {
 
             var ext = document.createElement("div");
             ext.setAttribute("class", "panel" + i);
-            ext.style=`margin:0px;padding:15px;text-align:center; background:#e5eecc;border:solid 1px #c3c3c3;width: 100%;height:${40*(json[i].food_id.length + 1)}px; display:none;`
+            ext.style=`margin:0px;padding:15px;text-align:center; background:#e5eecc;border:solid 1px #c3c3c3;width: 100%;height:${40*(json[i].foodid.length + 1)}px; display:none;`
 
-            for (var j = 0; j < json[i].food_id.length; j++) {
+            for (var j = 0; j < json[i].foodid.length; j++) {
                 var text = document.createElement("p");
-                text.innerHTML = json[i].food_id[j].name + "x" + json[i].food_id[j].amount;
+                text.innerHTML = json[i].foodid[j].foodname + "x" + json[i].foodid[j].amount;
                 ext.appendChild(text);
             }
             var total = document.createElement("p");
@@ -308,7 +308,7 @@ function NewsetInit() {
             var td0 = document.createElement("td");
             var td1 = document.createElement("td");
             var td2 = document.createElement("td");
-            td0.innerHTML = json[i].food_name;
+            td0.innerHTML = json[i].foodname;
             td1.innerHTML = json[i].price + "元";
             button1[i] = document.createElement("button");
             button1[i].setAttribute("class", "btn btn-warning");
@@ -340,7 +340,7 @@ function AdddishtoSet(i) {
     button2[i].setAttribute("class", "btn btn-warning");
     button2[i].setAttribute("onclick", `del(${i})`);
     PutIn.type = "hidden";
-    PutIn.value = json[i]._id;
+    PutIn.value = json[i].id;
     PutIn.name = `set[id]`;
     tr_set[i] = document.createElement("tr");
     var td0 = document.createElement("td");
