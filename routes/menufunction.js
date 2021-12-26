@@ -11,7 +11,7 @@ exports.get_menu=function(req,res){
 //新增餐點
 exports.editmenuplus=function(req,res){
     singlemodel.create({
-        food_name:req.body.food_name,
+        foodname:req.body.foodname,
         price:req.body.price,
         description:req.body.description
     },function(err){
@@ -28,7 +28,7 @@ exports.editmenuplus=function(req,res){
 }
 //店家刪除餐點
 exports.delete_single=function(req,res){
-    singlemodel.findByIdAndDelete(req.body.delete_id,function(err){
+    singlemodel.findByIdAndDelete(req.body.deleteid,function(err){
         if(err){
             console.log(err);
         }
