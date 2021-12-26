@@ -27,7 +27,7 @@ function init() {
       div[i] = document.createElement("div");
       image[i] = document.createElement("img");
       var foodName = document.createElement("div");
-      image[i].src = `../image/plus.png`;
+      image[i].src = `./image/plus.png`;
       image[i].style = "width: 100%";
       div[i].appendChild(image[i]);
       foodName.style = "width:100%; background-color:black; opacity:0.5; position:relative; word-wrap:break-word; color:white";
@@ -60,7 +60,7 @@ function init() {
       div[i] = document.createElement("div");
       image[i] = document.createElement("img");
       var foodName = document.createElement("div");
-      image[i].src = `../image/plus.png`;
+      image[i].src = `./image/plus.png`;
       image[i].style = "width: 100%";
       div[i].appendChild(image[i]);
       foodName.style =
