@@ -4,12 +4,13 @@ const singlemodel=require('./model/single');
 //獲取全部餐點資料
 exports.get_menu=function(req,res){
     singlemodel.find({},function(err,result){
-        console.log(result);
+        //console.log(result);
         res.send(result);
     });
 }
 //新增餐點
 exports.editmenuplus=function(req,res){
+    console.log(req.body.foodname);
     singlemodel.create({
         food_name:req.body.foodname,
         price:req.body.price,
@@ -28,10 +29,32 @@ exports.editmenuplus=function(req,res){
 }
 //店家刪除餐點
 exports.delete_single=function(req,res){
-    singlemodel.findByIdAndDelete(req.body.delete_id,function(err){
-        if(err){
-            console.log(err);
+    singlemodel.findOneAndDelete({_id:{$eq:req.body.foodid}},function(err){
+        if(err)
+        {
+            console.log("delete fail");
+        }
+        else
+        {
+            console.log("delete success");
         }
     })
-    res.redirect('editmenu.html')
+    res.redirect('editmenu.html');
+}
+//店家修改餐點
+exports.modify_single=function(req,res){
+    console.log("foodname:"+req.body.foodname);
+    singlemodel.findOneAndUpdate({food_id:{$eq:req.body.foodid}},{$set:{
+        food_name:req.body.foodname,
+        price:req.body.price,
+        description:req.body.description
+    }},function(err){
+        if(err){
+            console.log("modify fail");
+        }
+        else{
+            console.log("modify success");
+        }
+    });
+    res.redirect('editmenu.html');
 }
