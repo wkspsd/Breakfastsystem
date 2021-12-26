@@ -10,8 +10,9 @@ exports.get_menu=function(req,res){
 }
 //新增餐點
 exports.editmenuplus=function(req,res){
+    console.log(req.body.foodname);
     singlemodel.create({
-        food_name:req.body.food_name,
+        food_name:req.body.foodname,
         price:req.body.price,
         description:req.body.description
     },function(err){
@@ -28,7 +29,7 @@ exports.editmenuplus=function(req,res){
 }
 //店家刪除餐點
 exports.delete_single=function(req,res){
-    singlemodel.findOneAndDelete({_id:{$eq:req.body.food_id}},function(err){
+    singlemodel.findOneAndDelete({_id:{$eq:req.body.foodid}},function(err){
         if(err)
         {
             console.log("delete fail");
@@ -42,8 +43,8 @@ exports.delete_single=function(req,res){
 }
 //店家修改餐點
 exports.modify_single=function(req,res){
-    console.log("food_name:"+req.body.foodname);
-    singlemodel.findOneAndUpdate({food_name:{$eq:req.body.foodname}},{$set:{
+    console.log("foodname:"+req.body.foodname);
+    singlemodel.findOneAndUpdate({food_id:{$eq:req.body.foodid}},{$set:{
         food_name:req.body.foodname,
         price:req.body.price,
         description:req.body.description
