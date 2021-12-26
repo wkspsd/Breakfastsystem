@@ -46,8 +46,8 @@ exports.check_login=function(req,res){
             if(result)//如果找得到符合比對的資料
             {
                 console.log("login success");
-                req.session.user=result.account;
-                console.log(req.session.user);
+                /*req.session.user=result._id;*/
+
                 res.redirect('/menu.html');
             }
             else
