@@ -11,7 +11,7 @@ exports.get_menu=function(req,res){
 //新增餐點
 exports.editmenuplus=function(req,res){
     singlemodel.create({
-        foodname:req.body.foodname,
+        food_name:req.body.foodname,
         price:req.body.price,
         description:req.body.description
     },function(err){
