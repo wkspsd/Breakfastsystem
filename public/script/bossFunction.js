@@ -26,7 +26,7 @@ function init() {
             var font = document.createElement("div");
             div[i] = document.createElement("div");
             image[i] = document.createElement("img");
-            image[i].src = "../image/plus.png";
+            image[i].src = "./image/plus.png";
             image[i].style = "width: 100%";
             div[i].appendChild(image[i]);
             if (i % 2 == 0) {
@@ -51,7 +51,7 @@ function init() {
         var plusfont = document.createElement("div");
         plusfont.style = "width:100%;background-color:black;opacity:0.5;position:relative; word-wrap:break-word;color:white";
         plusfont.innerHTML = "<center>新增餐點";
-        plusImg.src = "../image/plus.png";
+        plusImg.src = "./image/plus.png";
         plusImg.style = "width: 100%";
         plusMenu.appendChild(plusImg);
         plusMenu.appendChild(plusfont);
@@ -96,11 +96,11 @@ function editInit() {
     request.open("GET", url, true);
     request.onload = function () {
         var json = JSON.parse(request.response);
-        document.getElementById("food_id").value = localStorage.getItem("id");
-        document.getElementById("name").value = localStorage.getItem("name");
+        document.getElementById("foodid").value = localStorage.getItem("id");
+        document.getElementById("foodname").value = localStorage.getItem("name");
         document.getElementById("description").value = localStorage.getItem("description");
         document.getElementById("price").value = localStorage.getItem("price");
-        document.getElementById("delete_id").value = localStorage.getItem("id");
+        document.getElementById("deleteid").value = localStorage.getItem("id");
         console.log(json);
     };
     request.send(null);
