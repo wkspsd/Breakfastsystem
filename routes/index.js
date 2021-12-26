@@ -11,4 +11,6 @@ router.post('/logout',userfunction.logout);
 router.post('/editmenuplus.html',menufunction.editmenuplus);
 router.get('/get_menu',menufunction.get_menu);
 router.post('/delete_single',menufunction.delete_single);
+router.post('/modify_single',menufunction.modify_single);
+
 module.exports = router;
