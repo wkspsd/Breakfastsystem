@@ -2,6 +2,7 @@ const req = require('express/lib/request');
 var mongoose=require('mongoose');
 const usermodel=require('./model/user');
 const session=require('express-session');
+const bcrypt=require('bcrypt');
 //註冊
 exports.register=function(req,res){
     usermodel.findOne({account:{$eq:req.body.account}},function(err,result)
@@ -20,7 +21,7 @@ exports.register=function(req,res){
                 age:req.body.age,
                 gender:req.body.gender,
                 account:req.body.account,
-                password:req.body.password
+                password:bcrypt.hashSync(req.body.password,5)
             },function(err){
                 console.log(err);
             })
@@ -40,14 +41,13 @@ exports.check_login=function(req,res){
     }
     else
     {
-        usermodel.findOne({account:{$eq:req.body.account},password:{$eq:req.body.password}},function(err,result)
+        usermodel.findOne({account:{$eq:req.body.account}},function(err,result)
         {
             if(err) throw err;
-            if(result)//如果找得到符合比對的資料
+            if(result && bcrypt.compareSync(req.body.password,result.password))//如果找得到符合比對的資料
             {
                 console.log("login success");
-                /*req.session.user=result._id;*/
-
+                req.session.user=result._id;
                 res.redirect('/menu.html');
             }
             else

@@ -44,6 +44,7 @@ exports.delete_single=function(req,res){
 exports.get_menu=function(req,res){
     singlemodel.find({},function(err,result){
         //console.log(result);
+        console.log(req.session.user);
         res.send(result);
     });
 }
@@ -67,19 +68,17 @@ exports.modify_single=function(req,res){
 //店家新增套餐
 exports.new_set=function(req,res){
     console.log(req.body);
-    setmodel.create({
-        set_name:req.body.name,
-        price:req.body.price,
-        description:req.body.description,
-        food_id:req.body.foodarray
-    },function(err){
-        if(err){
-            console.log("newset fail");
-        }
-        else{
-            console.log("newset success");
-        }
+    if(Array.isArray(req.body.foodarray))
+    {
+        setmodel.create({
+            set_name:req.body.name,
+            price:req.body.price,
+            description:req.body.description,
+            food_id:req.body.foodarray
+        },function(err){
+            if(err)throw err;
     })
+}
     res.redirect('/manage.html');
 }
 

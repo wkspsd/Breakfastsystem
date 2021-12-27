@@ -260,10 +260,10 @@ function ifSomething() {
 
     input_food_name.hidden = true;
     input_food_name.value = localStorage.getItem(localStorage.key(i) + " id");
-    input_food_name.name = 'cart[id]';
+    input_food_name.name = 'cartid';
     input_name.hidden = true;
     input_name.value = localStorage.key(i);
-    input_name.name = 'cart[name]';
+    input_name.name = 'cartname';
     td_food_name.innerText = localStorage.key(i);
     td_food_name.appendChild(input_food_name);
     td_food_name.appendChild(input_name);
@@ -273,7 +273,7 @@ function ifSomething() {
 
     input_food_number.hidden = true;
     input_food_number.value = localStorage.getItem(localStorage.key(i));
-    input_food_number.name = 'cart[num]';
+    input_food_number.name = 'cartnum';
     td_food_number.innerText = localStorage.getItem(localStorage.key(i));
     td_food_number.appendChild(input_food_number);
 

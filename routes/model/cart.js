@@ -2,7 +2,7 @@ const mongoose=require('mongoose');
 
 var cartschema=new mongoose.Schema({
     user_id:String,
-    food_id:{type:Array,"default":[]},
+    single_id:{type:Array,"default":[]},
     set_id:{type:Array,"default":[]}
 });
 
