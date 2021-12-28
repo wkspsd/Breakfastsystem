@@ -44,6 +44,7 @@
             };
             socket.onopen = function (event) {
                 var str=document.cookie;
+                console.log(str);
                     var strary=str.split(';');
                     console.log(strary[1].indexOf('connect.sid='));
                     console.log(strary[0].indexOf('connect.sid='));

@@ -340,7 +340,7 @@ function AdddishtoSet(i) {
     button2[i].setAttribute("onclick", `del(${i})`);
     PutIn.type = "hidden";
     PutIn.value = json[i]._id;
-    PutIn.name = `set[id]`;
+    PutIn.name = "foodarray";
     tr_set[i] = document.createElement("tr");
     var td0 = document.createElement("td");
     td0.innerHTML = json[i].food_name;
