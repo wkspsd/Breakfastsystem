@@ -24,9 +24,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret:"Breakfastsystem",
-  //Store:MongoStore.create({mongoUrl:'mongodb://127.0.0.1:27017/breakfastsystem'}),
-  Store:MongoStore.create({mongoUrl:'mongodb+srv://lancer775:mongo555@cluster0.rikbc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'}),
-  cookie:{maxAge:1000*60*60},
+  Store:MongoStore.create({mongoUrl:'mongodb://127.0.0.1:27017/breakfastsystem'}),
+  //Store:MongoStore.create({mongoUrl:'mongodb+srv://lancer775:mongo555@cluster0.rikbc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'}),
+  cookie:{maxAge:1000*60*10},
   resave: false,
   saveUninitialized: false
 }));
@@ -49,9 +49,8 @@ app.use(function(err, req, res, next) {
 });
 
 
-mongoose.connect('mongodb+srv://lancer775:mongo555@cluster0.rikbc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-//mongoose.connect('mongodb://127.0.0.1:27017/breakfastsystem');
-
+//mongoose.connect('mongodb+srv://lancer775:mongo555@cluster0.rikbc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
+mongoose.connect('mongodb://127.0.0.1:27017/breakfastsystem');
 
 
 module.exports = app;
