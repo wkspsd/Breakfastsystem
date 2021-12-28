@@ -24,6 +24,32 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
+	<script>
+      function parseCookie() {
+        var cookieObj = {};
+        var cookieAry = document.cookie.split(';');
+        var cookie;
+    
+        for (var i=0, l=cookieAry.length; i<l; ++i) {
+            cookie = jQuery.trim(cookieAry[i]);
+            cookie = cookie.split('=');
+            cookieObj[cookie[0]] = cookie[1];
+        }
+    
+        return cookieObj;
+}
+function getCookieByName(name) {
+    var value = parseCookie()[name];
+    if (value) {
+        value = decodeURIComponent(value);
+    }
+
+    return value;
+}
+ if(getCookieByName('connect.sid') != null){
+		window.location='menu.html';
+  }
+    </script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
