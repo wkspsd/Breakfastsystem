@@ -1,5 +1,3 @@
-const { ObjectID } = require('bson');
-const { json, redirect } = require('express/lib/response');
 const singlemodel=require('./model/single');
 const setmodel=require('./model/set');
 const { set } = require('mongoose');
