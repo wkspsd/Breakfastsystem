@@ -3,8 +3,8 @@ var request = new XMLHttpRequest();
 // var url = "http://localhost:3000/"
 var url = "https://raw.githubusercontent.com/YukiHime-TW/breakfastsystem/master/frontend/script/test.json";
 var url1 = "https://raw.githubusercontent.com/YukiHime-TW/breakfastsystem/master/frontend/script/order.json";
-// var mainURL = "https://breakfastsystem.herokuapp.com";
-var mainURL = "http://localhost:3000";
+var mainURL = "https://breakfastsystem.herokuapp.com";
+//var mainURL = "http://localhost:3000";
 
 var div = new Array(0);
 var image = new Array(0);
@@ -26,7 +26,7 @@ function init() {
             div[i] = document.createElement("div");
             image[i] = document.createElement("img");
             image[i].src = "./image/plus.png";
-            image[i].style = "width: 80%";
+            image[i].style = "width: 100%";
             div[i].appendChild(image[i]);
             if (i % 2 == 0) {
                 div[i].style =
@@ -51,7 +51,7 @@ function init() {
         plusfont.style = "width:100%;background-color:black;opacity:0.5;position:relative; word-wrap:break-word;color:white";
         plusfont.innerHTML = "<center>新增餐點";
         plusImg.src = "./image/plus.png";
-        plusImg.style = "width: 80%";
+        plusImg.style = "width: 100%";
         plusMenu.appendChild(plusImg);
         plusMenu.appendChild(plusfont);
         if (json.length % 2 == 1) {

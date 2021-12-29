@@ -1,7 +1,7 @@
 var request = new XMLHttpRequest();
 var requestSet = new XMLHttpRequest();
-// var mainURL = "https://breakfastsystem.herokuapp.com";
-var mainURL = "http://localhost:3000";
+var mainURL = "https://breakfastsystem.herokuapp.com";
+//var mainURL = "http://localhost:3000";
 var url = "http://localhost:3000/get_menu";
 var cart_url = "";
 var div = new Array(0);
@@ -9,8 +9,30 @@ var image = new Array(0);
 var descri = new Array(0);
 var price = 0;
 var dishLong = 0;
+function parseCookie() {
+    var cookieObj = {};
+    var cookieAry = document.cookie.split(';');
+    var cookie;
+    
+    for (var i=0, l=cookieAry.length; i<l; ++i) {
+        cookie = jQuery.trim(cookieAry[i]);
+        cookie = cookie.split('=');
+        cookieObj[cookie[0]] = cookie[1];
+    }
+    
+    return cookieObj;
+}
+function getCookieByName(name) {
+    var value = parseCookie()[name];
+    if (value) {
+        value = decodeURIComponent(value);
+    }
 
+    return value;
+}
 function init() {
+  /*if (getCookieByName('connect.sid') == null)
+		window.location='index.html';*/
   let d = document.getElementById("main");
   var menu = document.createElement("div");
   request.open("GET", mainURL + "/get_menu", true);
