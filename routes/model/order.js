@@ -1,6 +1,7 @@
 const mongoose=require('mongoose');
 
 var orderschema=new mongoose.Schema({
+    order_id:String,
     user_id:String,
     date:Date,
     state:Number,//送出->製作中->完成->已領取

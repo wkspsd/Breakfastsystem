@@ -1,5 +1,5 @@
 const ordermodel=require("./model/order");
-
+var order_no=1;
 exports.send_cart=function(req,res){
     var foodarray=new Array();
     var food
@@ -20,6 +20,7 @@ exports.send_cart=function(req,res){
     date.setHours(parseInt(time[1]))
     date.setMinutes(parseInt(time[2]))
     ordermodel.create({
+        order_id:date.toString()+"-"+String(order_no),
         user_id:req.session.user,
         date:new Date(),
         state:Number(req.body.price),
@@ -31,5 +32,6 @@ exports.send_cart=function(req,res){
             
         }
     })
+    order_no++;
     res.redirect('/menu.html');
 }
