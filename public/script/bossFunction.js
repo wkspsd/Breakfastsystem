@@ -3,8 +3,9 @@ var request = new XMLHttpRequest();
 // var url = "http://localhost:3000/"
 var url = "https://raw.githubusercontent.com/YukiHime-TW/breakfastsystem/master/frontend/script/test.json";
 var url1 = "https://raw.githubusercontent.com/YukiHime-TW/breakfastsystem/master/frontend/script/order.json";
-var mainURL = "https://breakfastsystem.herokuapp.com";
-//var mainURL = "http://localhost:3000";
+// var mainURL = "https://hidden-garden-96019.herokuapp.com"
+// var mainURL = "https://breakfast-system.herokuapp.com"
+var mainURL = "http://localhost:3000"
 
 var div = new Array(0);
 var image = new Array(0);
@@ -25,7 +26,7 @@ function init() {
             var font = document.createElement("div");
             div[i] = document.createElement("div");
             image[i] = document.createElement("img");
-            image[i].src = "./image/plus.png";
+            image[i].src = "../image/plus.png";
             image[i].style = "width: 100%";
             div[i].appendChild(image[i]);
             if (i % 2 == 0) {
@@ -50,7 +51,7 @@ function init() {
         var plusfont = document.createElement("div");
         plusfont.style = "width:100%;background-color:black;opacity:0.5;position:relative; word-wrap:break-word;color:white";
         plusfont.innerHTML = "<center>新增餐點";
-        plusImg.src = "./image/plus.png";
+        plusImg.src = "../image/plus.png";
         plusImg.style = "width: 100%";
         plusMenu.appendChild(plusImg);
         plusMenu.appendChild(plusfont);
@@ -95,11 +96,11 @@ function editInit() {
     request.open("GET", url, true);
     request.onload = function () {
         var json = JSON.parse(request.response);
-        document.getElementById("foodid").value = localStorage.getItem("id");
-        document.getElementById("foodname").value = localStorage.getItem("name");
+        document.getElementById("food_id").value = localStorage.getItem("id");
+        document.getElementById("food_name").value = localStorage.getItem("name");
         document.getElementById("description").value = localStorage.getItem("description");
         document.getElementById("price").value = localStorage.getItem("price");
-        document.getElementById("deleteid").value = localStorage.getItem("id");
+        document.getElementById("delete_id").value = localStorage.getItem("id");
         console.log(json);
     };
     request.send(null);
@@ -340,7 +341,7 @@ function AdddishtoSet(i) {
     button2[i].setAttribute("onclick", `del(${i})`);
     PutIn.type = "hidden";
     PutIn.value = json[i]._id;
-    PutIn.name = "foodarray";
+    PutIn.name = `set[id]`;
     tr_set[i] = document.createElement("tr");
     var td0 = document.createElement("td");
     td0.innerHTML = json[i].food_name;
