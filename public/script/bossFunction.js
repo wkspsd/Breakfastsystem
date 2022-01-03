@@ -164,10 +164,10 @@ function MakingorderInit() {
             var tr_item_value = document.createElement("tr");           //訂單編號 欲取餐時間 訂單狀態 的值
             var td_item_order_value = document.createElement("td");
             tr_item_value.style = "background:white;"
-            td_item_order_value.innerHTML = "<center>" + json[i].order_num;
+            td_item_order_value.innerHTML = "<center>" + json[i].order_no;
             var td_item_arrive_time_value = document.createElement("td");
-            var hour = Number(json[i].pickupTime[11] + json[i].pickupTime[12]);
-            var minute = json[i].pickupTime[14] + json[i].pickupTime[15];
+            var hour = Number(json[i].arrive_time[11] + json[i].arrive_time[12]);
+            var minute = json[i].arrive_time[14] + json[i].arrive_time[15];
             console.log(hour);
             console.log(minute);
             hour += 8;
@@ -181,7 +181,7 @@ function MakingorderInit() {
             button[i] = document.createElement("button");
             button[i].setAttribute("class", "btn btn-warning");
 
-            if (json[i].state == 2)
+            if (json[i].state == 1)
                 button[i].innerHTML = "<center>" + "未完成";
             else
                 button[i].innerHTML = "<center>" + "未取單";
@@ -196,17 +196,17 @@ function MakingorderInit() {
             tbody.appendChild(tr_item_value);
             tbody.appendChild(tr_item_food);
 
-            for (var j = 0; j < json[i].food_id.length; j++) {           //訂單內餐點的資訊
+            for (var j = 0; j < json[i].food_array.length; j++) {           //訂單內餐點的資訊
                 var tr_food = document.createElement("tr");
                 tr_food.style = "background:white;"
                 var td_food_name = document.createElement("td");
-                td_food_name.innerHTML = "<center>" + json[i].food_id[j].name;
+                td_food_name.innerHTML = "<center>" + json[i].food_array[j].food_name;
                 var td_food_amount = document.createElement("td");
-                td_food_amount.innerHTML = "<center>" + json[i].food_id[j].amount;
+                td_food_amount.innerHTML = "<center>" + json[i].food_array[j].food_num;
                 var food_button = document.createElement("button");
                 var td_food_state = document.createElement("td");
                 td_food_state.setAttribute("align", "center");
-                if (json[i].food_id[j].finished == false) {
+                if (json[i].food_array[j].finished == false) {
                     food_button.innerHTML = "<center>未完成"
                     food_button.setAttribute("class", "btn btn-warning");
                     food_button.setAttribute("onclick", `singleState(${i}, ${j})`)
@@ -252,7 +252,11 @@ function state(i) {
 
 function singleState(i, j) {
     var json = JSON.parse(request.response);
-    window.location.replace(mainURL + `/mark_as_done?order_id=${json[i].order_num}&item=${json[i].food_id[j]._id}`)
+    console.log(json);
+    $.post('/mark_as_done',{
+        order_no:json[i].order_no,
+        item:json[i].food_array[j].food_id
+    })
 }
 
 function AllorderInit() {

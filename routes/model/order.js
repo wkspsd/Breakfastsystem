@@ -1,20 +1,17 @@
 const mongoose=require('mongoose');
 
 var orderschema=new mongoose.Schema({
-    order_id:String,
+    order_no:Number,
     user_id:String,
     date:Date,
-    state:Number,//送出->製作中->完成->已領取
-    food_array:[{
-        "id": String,
-        "name": String, 
-        "amount": Number,
-        "finished": Boolean
-    }],
+    state:Number,//1.製作中->2.完成->3.已領取
+    food_array:{type:Array,default:[]},
     price:Number,
     arrive_time:Date
 })
 
 var ordermodel=mongoose.model('order',orderschema);
 
-module.exports=ordermodel;
+var historyordermodel=mongoose.model('historyorder',orderschema);
+
+module.exports={ordermodel,historyordermodel};

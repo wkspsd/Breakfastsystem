@@ -312,11 +312,36 @@ function ifNothing() {
 }
 
 function sendingFinalCart() {
-  var cart = document.getElementById("finalCart");
+  var data={};
   localStorage.clear();
-  cart.appendChild(document.getElementById("appt"));
-  cart.appendChild(document.getElementById("price"));
-  cart.submit();
+  $.ajax({
+    method:"get",
+    url:"/get_username"
+  }).done(function(res){
+    console.log(res);
+      var fid=[],fname=[],fnum=[];
+      document.getElementsByName("cartid").forEach(function(e){fid.push(e.value)})
+      document.getElementsByName("cartname").forEach(function(e){fname.push(e.value)})
+      document.getElementsByName("cartnum").forEach(function(e){fnum.push(e.value)})
+      var food_array=[];
+      for(var i=0;i<fid.length;i++)
+      {
+        food_array.push({
+          food_id:fid[i],
+          food_name:fname[i],
+          food_num:fnum[i]
+        })
+      }
+      data={
+        type:3,
+        user_id:res.username,
+        food_array:food_array,
+        price:document.getElementById("price").value,
+        appt:document.getElementById("appt").value
+      }
+      socket.send(JSON.stringify(data));
+  })
+  window.location.replace("/menu.html");
   console.log("Order send");
 }
 
@@ -351,20 +376,20 @@ function orderInit() {
     tbody.style = "center = true;";
     table.appendChild(tbody);
 
-    for (var i = 0; i < json[0].food_id.length; i++) {
+    for (var i = 0; i < json.food_array.length; i++) {
       var tr_food = document.createElement("tr");
       tr_food.id = `${i}`;
       var td_food_name = document.createElement("td");
-      td_food_name.innerText = json[0].food_id[i].name;
+      td_food_name.innerText = json.food_array[i].food_name;
       var td_food_number = document.createElement("td");
-      td_food_number.innerText = json[0].food_id[i].amount;
+      td_food_number.innerText = json.food_array[i].food_num;
       tr_food.appendChild(td_food_name);
       tr_food.appendChild(td_food_number);
       tbody.appendChild(tr_food);
     }
 
-    var hour = Number(json[0].pickupTime[11] + json[0].pickupTime[12]);
-    var minute = json[0].pickupTime[14] + json[0].pickupTime[15];
+    var hour = Number(json.arrive_time[11] + json.arrive_time[12]);
+    var minute = json.arrive_time[14] + json.arrive_time[15];
     hour += 8;
     if (hour > 24) hour -= 24;
     var footer = document.getElementById("footer");
