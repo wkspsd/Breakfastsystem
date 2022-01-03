@@ -252,7 +252,8 @@ function state(i) {
 
 function singleState(i, j) {
     var json = JSON.parse(request.response);
-    window.location.replace(mainURL + `/mark_as_done?order_id=${json[i].order_num}&item=${json[i].food_id[j]._id}`)
+    console.log(json);
+    window.location.replace(mainURL + `/mark_as_done?order_id=${json[i].order_no}&item=${json[i].food_array[j]._id}`)
 }
 
 function AllorderInit() {

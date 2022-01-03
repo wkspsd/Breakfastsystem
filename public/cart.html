@@ -20,7 +20,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
-
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js">
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -30,6 +31,37 @@
         crossorigin="anonymous"></script>
 
     <script src="./script/customerFunction.js"></script>
+    <script>
+        var socket;
+        if (!window.WebSocket) {
+            window.WebSocket = window.MozWebSocket;
+        }
+        if (window.WebSocket) {
+            var HOST = location.origin.replace(/^https/, 'ws')
+            socket = new WebSocket("ws://127.0.0.1:3000");
+            socket.onmessage = function (event) {
+                console.log("receive answer");
+            };
+            socket.onopen = function (event) {
+                var data={};
+               $.ajax({
+                    method:"get",
+                    url:"/get_username"
+                }).done(function(res){
+                    data={
+                        type:2,
+                        user_id:res.username
+                    }
+                    socket.send(JSON.stringify(data));
+                })
+            };
+            socket.onclose = function (event) {
+            };
+        } 
+        else {
+            alert("不支援WebSocket！");
+        }
+    </script>
 
 
 </head>

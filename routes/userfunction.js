@@ -47,7 +47,7 @@ exports.check_login=function(req,res){
             if(result && bcrypt.compareSync(req.body.password,result.password))//如果找得到符合比對的資料
             {
                 console.log("login success");
-                req.session.user=result._id;
+                req.session.user=result.user_name;
                 res.redirect('/menu.html');
             }
             else
@@ -63,4 +63,10 @@ exports.check_login=function(req,res){
 exports.logout=function(req,res){
     req.session.destroy();
     res.redirect('index.html');
+}
+
+//拿到user_name
+exports.get_username=function(req,res){
+    console.log(req.session.user);
+    res.send({username:req.session.user});
 }
