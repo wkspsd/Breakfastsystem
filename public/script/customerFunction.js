@@ -43,13 +43,13 @@ function init() {
     if (localStorage.getItem("price") != null) {
       price = Number(localStorage.getItem("price"));
     }
-    for (var i = 0; i < json.length; i++) {
+   for (var i = 0; i < json.length; i++) {
       descri[i] = json[i].description;
       div[i] = document.createElement("div");
       image[i] = document.createElement("img");
       var foodName = document.createElement("div");
       image[i].src = `./image/plus.png`;
-      image[i].style = "width: 100%";
+      image[i].style = "width: 184px";
       div[i].appendChild(image[i]);
       foodName.style = "width:100%; background-color:black; opacity:0.5; position:relative; word-wrap:break-word; color:white";
       foodName.innerHTML = "<center>" + json[i].food_name + "$" + json[i].price + "</center>";
@@ -58,10 +58,10 @@ function init() {
       div[i].setAttribute("price", json[i].price);
       if (i % 2 == 0) {
         div[i].style =
-          "width: 25%; border-width:3px;border-style:solid;border-color:black;padding:5px; float:left;margin-left: 15%; margin-top: 20%;";
+          "width: auto; border-width:3px;border-style:solid;border-color:black;padding:5px; float:left;margin-left: 10%; margin-top: 15%;white-space: nowrap; display: inline-block;";
       } else {
         div[i].style =
-          "width: 25%; border-width:3px;border-style:solid;border-color:black;padding:5px; float:right;margin-right: 15%; margin-top: 20%;";
+          "width: auto; border-width:3px;border-style:solid;border-color:black;padding:5px; float:left;margin-left: 10%; margin-top: 15%;white-space: nowrap; display: inline-block;";
       }
       div[i].id = json[i]._id;
       div[i].setAttribute("onclick", `showDes(${i})`);
@@ -82,7 +82,7 @@ function init() {
       image[i] = document.createElement("img");
       var foodName = document.createElement("div");
       image[i].src = `./image/plus.png`;
-      image[i].style = "width: 100%";
+      image[i].style = "width: 184px";
       div[i].appendChild(image[i]);
       foodName.style =
         "width:100%; background-color:black; opacity:0.5; position:relative; word-wrap:break-word; color:white";
@@ -93,10 +93,10 @@ function init() {
       div[i].setAttribute("price", set[i - dishLong].price);
       if (i % 2 == 0) {
         div[i].style =
-          "width: 25%; border-width:3px;border-style:solid;border-color:black;padding:5px; float:left;margin-left: 15%; margin-top: 20%;";
+          "width: auto; border-width:3px;border-style:solid;border-color:black;padding:5px; float:left;margin-left: 10%; margin-top: 15%;white-space: nowrap; display: inline-block;" ;
       } else {
         div[i].style =
-          "width: 25%; border-width:3px;border-style:solid;border-color:black;padding:5px; float:right;margin-right: 15%; margin-top: 20%;";
+          "width: auto; border-width:3px;border-style:solid;border-color:black;padding:5px; float:left;margin-left: 10%; margin-top: 15%;white-space: nowrap; display: inline-block;";
       }
       div[i].id = set[i - dishLong]._id;
       div[i].setAttribute("onclick", `showDes(${i})`);
