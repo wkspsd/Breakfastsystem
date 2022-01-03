@@ -26,15 +26,15 @@ function init() {
             var font = document.createElement("div");
             div[i] = document.createElement("div");
             image[i] = document.createElement("img");
-            image[i].src = "../image/plus.png";
-            image[i].style = "width: 100%";
+            image[i].src = "./image/plus.png";
+            image[i].style = "width: 184px";
             div[i].appendChild(image[i]);
             if (i % 2 == 0) {
                 div[i].style =
-                    "width: 25%; border-width:3px;border-style:solid;border-color:black;padding:5px; float:left;margin-left: 15%; margin-top: 20%;";
+                    "width: auto;  border-width:3px;border-style:solid;border-color:black;padding:5px; float:left;margin-left: 10%; margin-top: 15%; white-space: nowrap; display: inline-block;";
             } else {
                 div[i].style =
-                    "width: 25%; border-width:3px;border-style:solid;border-color:black;padding:5px; float:right;margin-right: 15%; margin-top: 20%;";
+                    "width: auto;  border-width:3px;border-style:solid;border-color:black;padding:5px; float:left;margin-left: 10%; margin-top: 15%; white-space: nowrap; display: inline-block;";
             }
 
             font.style = "width:100%;background-color:black;opacity:0.5;position:relative; word-wrap:break-word;color:white";
@@ -51,16 +51,16 @@ function init() {
         var plusfont = document.createElement("div");
         plusfont.style = "width:100%;background-color:black;opacity:0.5;position:relative; word-wrap:break-word;color:white";
         plusfont.innerHTML = "<center>新增餐點";
-        plusImg.src = "../image/plus.png";
-        plusImg.style = "width: 100%";
+        plusImg.src = "./image/plus.png";
+        plusImg.style = "width: 184px";
         plusMenu.appendChild(plusImg);
         plusMenu.appendChild(plusfont);
         if (json.length % 2 == 1) {
             plusMenu.style =
-                "width: 25%; border-width:3px;border-style:solid;border-color:black;padding:5px; float:right;margin-right: 15%; margin-top: 20%;";
+                "width: auto; border-width:3px;border-style:solid;border-color:black;padding:5px; float:left;margin-left: 10%; margin-top: 15%;";
         } else {
             plusMenu.style =
-                "width: 25%; border-width:3px;border-style:solid;border-color:black;padding:5px; float:left;margin-left: 15%; margin-top: 20%;";
+                "width: auto; border-width:3px;border-style:solid;border-color:black;padding:5px; float:left;margin-left: 10%; margin-top: 15%;";
         }
         plusMenu.onclick = function () {
             window.location.replace("editmenuplus.html", "新增餐點");
