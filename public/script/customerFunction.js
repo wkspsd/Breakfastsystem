@@ -352,7 +352,7 @@ function orderInit() {
     console.log(json);
     var d = document.getElementById("main");
     var table = document.createElement("table");
-    table.style = "margin-top:13%";
+    table.style = "margin-top:1%";
     table.className = "table table-striped";
     d.appendChild(table);
 
