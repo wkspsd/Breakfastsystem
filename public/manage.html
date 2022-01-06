@@ -41,6 +41,8 @@
             socket = new WebSocket("ws://127.0.0.1:3000");
 
             socket.onmessage = function (event){//如果收到訊息
+                var data=JSON.parse(event.data)
+                confirm("EWREW")
                 if(true)
                 {
                     console.log("ready to accept order");
@@ -52,7 +54,8 @@
                         console.log("send yes");
                         socket.send(JSON.stringify({
                             type:4,
-                            answer:"y"
+                            answer:"y",
+                            user_id:data.user_id
                         }));
                     });
                 }

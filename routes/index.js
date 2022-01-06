@@ -23,4 +23,7 @@ router.post('/accept_order',orderfunction.accept_order);
 router.get('/my_active_order',orderfunction.get_order);
 router.get('/show_all_active_order',orderfunction.get_current_order);
 router.post('/mark_as_done',orderfunction.markdone);
+router.post('/state_update',orderfunction.state_update);
+router.post('/order_complete',orderfunction.order_complete)
+router.get('/show_all_order',orderfunction.get_histroy);
 module.exports = router;

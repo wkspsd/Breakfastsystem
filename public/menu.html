@@ -43,9 +43,23 @@
         if (window.WebSocket) {
             var HOST = location.origin.replace(/^https/, 'ws')
             socket = new WebSocket("ws://127.0.0.1:3000");
+
+
             socket.onmessage = function (event) {
-                alert(event.data);
+                var data=JSON.parse(event.data)
+                if(data.type==4){
+                    if(data.answer=="y"){//
+                        console.log("店家接受訂單")
+                    }else{
+                        console.log("店家拒絕訂單")
+                    }
+                }else{
+                        console.log("餐點做好了!!!")
+                }
             };
+
+
+
             socket.onopen = function (event) {
                 var data={};
                $.ajax({

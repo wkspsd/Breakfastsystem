@@ -35,10 +35,7 @@ var shopkeeper;
 wss.on('connection',ws=> {
 
   //連結時執行此 console 提示
-  console.log('Client connected')
-  wss.clients.forEach(client=>{
-    console.log(client.user_id);
-  })
+  console.log('Client connected')     
   ws.on('message',data=>{
     var data=JSON.parse(data);
     console.log(data);
@@ -51,17 +48,24 @@ wss.on('connection',ws=> {
       shopkeeper.send(JSON.stringify(data));
       console.log("type3 get!");
     }else if(data.type==4){
+      console.log("type4 get!");
       wss.clients.forEach(client=>{
-        console.log("type4 get!");
+        console.log("client:"+client.user_id)
+        console.log("data:"+data.user_id)
         if(client.user_id==data.user_id){
           client.send(JSON.stringify(data));
           console.log("send answer!!!");
         }
       })
     }else if(data.type==5){
-      if(client.user_id==data.user_id){
-        client.send(JSON.stringify("state++"));
-      }
+      console.log("type5 get!")
+      wss.clients.forEach(client=>{
+        if(client.user_id==data.user_id){
+          console.log("type5 send")
+          client.send(JSON.stringify({
+            type:5
+          }));
+        }})
     }
   })
   //當 WebSocket 的連線關閉時執行
