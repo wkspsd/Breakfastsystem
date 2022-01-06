@@ -243,10 +243,14 @@ function MakingorderInit() {
 
 function state(i) {
     var json = JSON.parse(request.response);
-    if (json[i].state == 2)
-        window.location.replace(mainURL + `/state2?order_id=${json[i].order_num}`);
-    else if (json[i].state == 3)
-        window.location.replace(mainURL + `/state3?order_id=${json[i].order_num}`);
+    $.post('/state_update',{
+        order_no:json[i].order_no,
+        user_id:json[i].user_id
+    })
+    socket.send(JSON.stringify({
+        type:5,
+        user_id:json[i].user_id
+    }))
 }
 
 function singleState(i, j) {
@@ -266,18 +270,18 @@ function AllorderInit() {
         var All_order = document.getElementById("All_order");
         for (var i = 0; i < json.length; i++) {
             var order = document.createElement("p");
-            order.innerHTML = `${json[i].order_num} ${json[i].createdAt}`;
+            order.innerHTML = `${json[i].date}-${json[i].order_no}`;
             order.setAttribute("class", "flip");
             order.setAttribute("onclick",`AllorderExtend(${i})`)
 
 
             var ext = document.createElement("div");
             ext.setAttribute("class", "panel" + i);
-            ext.style=`margin:0px;padding:15px;text-align:center; background:#e5eecc;border:solid 1px #c3c3c3;width: 100%;height:${40*(json[i].food_id.length + 1)}px; display:none;`
+            ext.style=`margin:0px;padding:15px;text-align:center; background:#e5eecc;border:solid 1px #c3c3c3;width: 100%;height:${40*(json[i].food_array.length + 1)}px; display:none;`
 
-            for (var j = 0; j < json[i].food_id.length; j++) {
+            for (var j = 0; j < json[i].food_array.length; j++) {
                 var text = document.createElement("p");
-                text.innerHTML = json[i].food_id[j].name + "x" + json[i].food_id[j].amount;
+                text.innerHTML = json[i].food_array[j].food_name + "x" + json[i].food_array[j].food_num;
                 ext.appendChild(text);
             }
             var total = document.createElement("p");

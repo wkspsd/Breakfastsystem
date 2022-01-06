@@ -393,7 +393,7 @@ function orderInit() {
     hour += 8;
     if (hour > 24) hour -= 24;
     var footer = document.getElementById("footer");
-    footer.innerHTML = `總計: ${json[0].price}元 預計取餐時間: ${hour}:${minute}`
+    footer.innerHTML = `總計: ${json.price}元 預計取餐時間: ${hour}:${minute}`
   }
   request.send(null);
 }
