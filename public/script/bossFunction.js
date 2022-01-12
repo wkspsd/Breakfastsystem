@@ -3,8 +3,8 @@ var request = new XMLHttpRequest();
 // var url = "http://localhost:3000/"
 var url = "https://raw.githubusercontent.com/YukiHime-TW/breakfastsystem/master/frontend/script/test.json";
 var url1 = "https://raw.githubusercontent.com/YukiHime-TW/breakfastsystem/master/frontend/script/order.json";
-// var mainURL = "https://breakfastsystem.herokuapp.com"
-var mainURL = "http://localhost:3000"
+var mainURL = "https://breakfastsystem.herokuapp.com"
+//var mainURL = "http://localhost:3000"
 
 var div = new Array(0);
 var image = new Array(0);
@@ -95,11 +95,11 @@ function editInit() {
     request.open("GET", url, true);
     request.onload = function () {
         var json = JSON.parse(request.response);
-        document.getElementById("food_id").value = localStorage.getItem("id");
-        document.getElementById("food_name").value = localStorage.getItem("name");
+        document.getElementById("foodid").value = localStorage.getItem("id");
+        document.getElementById("foodname").value = localStorage.getItem("name");
         document.getElementById("description").value = localStorage.getItem("description");
         document.getElementById("price").value = localStorage.getItem("price");
-        document.getElementById("delete_id").value = localStorage.getItem("id");
+        document.getElementById("deleteid").value = localStorage.getItem("id");
         console.log(json);
     };
     request.send(null);
