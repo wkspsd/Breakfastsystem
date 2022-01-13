@@ -183,7 +183,7 @@ function addAlreadyDish(i) {
 }
 
 function showDes(i) {
-  image[i].style = "opacity:0.2;background-color : black;width: 100%";
+  image[i].style = "opacity:0.2;background-color : black;width: 184px";
   var des = document.createElement("span");
   des.innerText = descri[i];
   des.style = "position: absolute;margin-bottom: 0;margin-top:-100px";
@@ -194,7 +194,7 @@ function showDes(i) {
 }
 
 function recover(i) {
-  image[i].style = "width: 100%";
+  image[i].style = "width: 184px";
   div[i].removeChild(document.getElementById(div[i].id + "des"));
   document.getElementById(div[i].id).setAttribute("onclick", `showDes(${i})`);
 }
@@ -206,7 +206,10 @@ function clearAll() {
     div[i].num = 0;
   }
 }
-
+function clearAllincart() {
+  localStorage.clear();
+  window.location.replace("menu.html");
+}
 function cartInit() {
   
   var p = document.getElementById("price");
@@ -227,6 +230,7 @@ function cartInit() {
   }
 
 }
+
 
 function ifSomething() {
   var d = document.getElementById("main");
