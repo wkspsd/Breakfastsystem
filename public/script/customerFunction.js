@@ -207,6 +207,16 @@ function clearAll() {
   }
 }
 
+function clearAllincart() {
+  localStorage.clear();
+  var json = JSON.parse(request.response);
+  for (var i = 0; i < json.length; i++) {
+    div[i].num = 0;
+  }
+  window.location.replace("/menu.html");
+}
+
+
 function cartInit() {
   
   var p = document.getElementById("price");
