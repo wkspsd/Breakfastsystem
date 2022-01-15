@@ -236,7 +236,7 @@ function ifSomething() {
   var d = document.getElementById("main");
   var form = document.createElement("form");
   form.id = "finalCart";
-  form.action = "/send_cart";
+  form.action = "/accept_order";
   form.method = "POST"
   var table = document.createElement("table");
   table.className = "table table-striped";
