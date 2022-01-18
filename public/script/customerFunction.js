@@ -317,7 +317,6 @@ function ifNothing() {
 
 function sendingFinalCart() {
   var data={};
-  localStorage.clear();
   $.ajax({
     method:"get",
     url:"/get_username"
@@ -345,6 +344,7 @@ function sendingFinalCart() {
       }
       socket.send(JSON.stringify(data));
   })
+  localStorage.clear();
   window.location.replace("/menu.html");
   console.log("Order send");
 }
