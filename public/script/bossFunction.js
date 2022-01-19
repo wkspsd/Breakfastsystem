@@ -183,7 +183,6 @@ function MakingorderInit() {
             var minute = json[i].arrive_time[14] + json[i].arrive_time[15];
             console.log(hour);
             console.log(minute);
-            hour += 8;
             if (hour > 24) hour -= 24;
             td_item_arrive_time_value.innerHTML = `<center>${hour}:${minute}`;
             // "<center>" + json[i].pickupTime;

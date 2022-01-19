@@ -13,13 +13,13 @@ function parseCookie() {
     var cookieObj = {};
     var cookieAry = document.cookie.split(';');
     var cookie;
-    
+
     for (var i=0, l=cookieAry.length; i<l; ++i) {
         cookie = jQuery.trim(cookieAry[i]);
         cookie = cookie.split('=');
         cookieObj[cookie[0]] = cookie[1];
     }
-    
+
     return cookieObj;
 }
 function getCookieByName(name) {
@@ -211,7 +211,7 @@ function clearAllincart() {
   window.location.replace("menu.html");
 }
 function cartInit() {
-  
+
   var p = document.getElementById("price");
   if (localStorage.getItem("price") != null) {
     price = Number(localStorage.getItem("price"));
@@ -236,7 +236,7 @@ function ifSomething() {
   var d = document.getElementById("main");
   var form = document.createElement("form");
   form.id = "finalCart";
-  form.action = "/accept_order";
+  form.action = "/send_cart";
   form.method = "POST"
   var table = document.createElement("table");
   table.className = "table table-striped";
@@ -317,6 +317,7 @@ function ifNothing() {
 
 function sendingFinalCart() {
   var data={};
+  localStorage.clear();
   $.ajax({
     method:"get",
     url:"/get_username"
@@ -344,7 +345,6 @@ function sendingFinalCart() {
       }
       socket.send(JSON.stringify(data));
   })
-  localStorage.clear();
   window.location.replace("/menu.html");
   console.log("Order send");
 }
@@ -394,7 +394,6 @@ function orderInit() {
 
     var hour = Number(json.arrive_time[11] + json.arrive_time[12]);
     var minute = json.arrive_time[14] + json.arrive_time[15];
-    hour += 8;
     if (hour > 24) hour -= 24;
     var footer = document.getElementById("footer");
     footer.innerHTML = `總計: ${json.price}元 預計取餐時間: ${hour}:${minute}`
@@ -446,7 +445,7 @@ function calCost(d, flag) {
     }
     cost.innerText = `Cost: ${lastCost}元`;
   };
-  
+
   footer.appendChild(cost);
   if (flag) {
     var send = document.createElement("input");
