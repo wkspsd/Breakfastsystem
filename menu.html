@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+
+    <title>瀏覽菜單</title>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+        <script src="./script/customerFunction.js"></script>
+
+
+    <script type="text/javascript">
+        var socket;
+        if (!window.WebSocket) {
+            window.WebSocket = window.MozWebSocket;
+        }
+        if (window.WebSocket) {
+            var HOST = location.origin.replace(/^https/, 'ws')
+            socket = new WebSocket("ws://127.0.0.1:3000");
+
+
+            socket.onmessage = function (event) {
+                var data=JSON.parse(event.data)
+                if(data.type==4){
+                    if(data.answer=="y"){//
+                        console.log("店家接受訂單")
+                    }else{
+                        console.log("店家拒絕訂單")
+                    }
+                }else{
+                        console.log("餐點做好了!!!")
+                }
+            };
+
+
+
+            socket.onopen = function (event) {
+                var data={};
+               $.ajax({
+                    method:"get",
+                    url:"/get_username"
+                }).done(function(res){
+                    data={
+                        type:2,
+                        user_id:res.username
+                    }
+                    socket.send(JSON.stringify(data));
+                })
+            };
+            socket.onclose = function (event) {
+            };
+        }
+        else {
+            alert("不支援WebSocket！");
+        }
+    </script>
+
+</head>
+
+<body id="main">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form class="form-inline">
+            <a class="navbar-brand" href="order.html"><img src="./image/txt.jpg" width="40" height="40" alt="訂單"></a>
+            <a class="navbar-brand" href="cart.html"><img src="./image/buycar.png" width="40" height="40"
+                    alt="購物車"></a>
+
+        </form>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link " href="menu.html">菜單 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                   <form action="/logout" method="POST"><button type="submit" class="btn btn-warning">登出</button></form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <script>
+        window.onload = init();
+        window.onload = NewsetInit();
+    </script>
+    <form id="cart" action="tobackend"></form>
+</body>
+
+</html>
