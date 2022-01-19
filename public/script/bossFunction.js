@@ -1,8 +1,4 @@
 var request = new XMLHttpRequest();
-// var url = "https://raw.githubusercontent.com/YukiHime-TW/breakfastsystem/master/frontend/script/test.json";
-// var url = "http://localhost:3000/"
-var url = "https://raw.githubusercontent.com/YukiHime-TW/breakfastsystem/master/frontend/script/test.json";
-var url1 = "https://raw.githubusercontent.com/YukiHime-TW/breakfastsystem/master/frontend/script/order.json";
 var mainURL = "https://breakfastsystem.herokuapp.com"
 //var mainURL = "http://localhost:3000"
 
@@ -169,7 +165,7 @@ function MakingorderInit() {
             var minute = json[i].arrive_time[14] + json[i].arrive_time[15];
             console.log(hour);
             console.log(minute);
-            hour += 8;
+            
             if (hour > 24) hour -= 24;
             td_item_arrive_time_value.innerHTML = `<center>${hour}:${minute}`;
             // "<center>" + json[i].pickupTime;
@@ -260,6 +256,7 @@ function singleState(i, j) {
         order_no:json[i].order_no,
         item:json[i].food_array[j].food_id
     })
+	window.location.reload();
 }
 
 function AllorderInit() {

@@ -47,7 +47,7 @@
                 {
                     console.log("ready to accept order");
                     $.ajax({
-                        method:"post",
+                        method:"POST",
                         url:"/accept_order",
                         data:{order:event.data},
                     }).done(function(res){

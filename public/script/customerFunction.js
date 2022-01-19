@@ -394,7 +394,7 @@ function orderInit() {
 
     var hour = Number(json.arrive_time[11] + json.arrive_time[12]);
     var minute = json.arrive_time[14] + json.arrive_time[15];
-    hour += 8;
+    
     if (hour > 24) hour -= 24;
     var footer = document.getElementById("footer");
     footer.innerHTML = `總計: ${json.price}元 預計取餐時間: ${hour}:${minute}`
