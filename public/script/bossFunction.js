@@ -208,7 +208,7 @@ function MakingorderInit() {
                 if (json[i].food_array[j].finished == false) {
                     food_button.innerHTML = "<center>未完成"
                     food_button.setAttribute("class", "btn btn-warning");
-                    food_button.setAttribute("onclick", `singleState(${i}, ${j})`)
+                    food_button.setAttribute("onclick", `singleState(${i}, ${j})`);
                     td_food_state.appendChild(food_button);
                 }
                 else {
@@ -260,6 +260,7 @@ function singleState(i, j) {
         order_no:json[i].order_no,
         item:json[i].food_array[j].food_id
     })
+	window.location.reload();
 }
 
 function AllorderInit() {
