@@ -63,6 +63,15 @@
 
 </head>
 
+<script language="JavaScript">
+function myrefresh()
+{
+window.location.reload();
+}
+setTimeout('myrefresh()',5000); //指定5秒刷新一次
+</script>
+
+
 <body id="main">
     <script>
         window.onload = MakingorderInit();
@@ -80,11 +89,12 @@
                 </li>
                 <li class="nav-item">
                   <form action="/logout" method="POST"><button type="submit" class="btn btn-warning">登出</button></form>
+				  
                 </li>
             </ul>
         </div>
     </nav>
-    <table id="table" style="margin-top: 7%; width: 100%;">
+    <table id="table" style="margin-top: 15%; width: 100%;">
 
     </table>
 
