@@ -315,7 +315,7 @@ function AllorderExtend(i) {
 }
 
 function NewsetInit() {
-    request.open("GET", mainURL + '/get_set', true);
+    request.open("GET", mainURL + '/get_menu', true);
     request.onload = function () {
         var json = JSON.parse(request.response);
         console.log(json);
