@@ -105,6 +105,20 @@ function editInit() {
     request.send(null);
 }
 
+function editsetInit() {
+    request.open("GET", url, true);
+    request.onload = function () {
+        var json = JSON.parse(request.response);
+        document.getElementById("foodid").value = localStorage.getItem("id");
+        document.getElementById("setname").value = localStorage.getItem("name");
+        document.getElementById("description").value = localStorage.getItem("description");
+        document.getElementById("price").value = localStorage.getItem("price");
+        document.getElementById("deleteid").value = localStorage.getItem("id");
+        console.log(json);
+    };
+    request.send(null);
+}
+
 function GetoutEdit() {
     localStorage.clear();
     window.location.replace("editmenu.html", "餐點");
@@ -301,7 +315,7 @@ function AllorderExtend(i) {
 }
 
 function NewsetInit() {
-    request.open("GET", mainURL + '/get_menu', true);
+    request.open("GET", mainURL + '/get_set', true);
     request.onload = function () {
         var json = JSON.parse(request.response);
         console.log(json);
