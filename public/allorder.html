@@ -53,8 +53,8 @@
             window.WebSocket = window.MozWebSocket;
         }
         if (window.WebSocket) {
-            var HOST = location.origin.replace(/^https/, 'ws')
-            socket = new WebSocket("ws://127.0.0.1:3000");
+            var HOST = location.origin.replace(/^https/, 'wss')
+            socket = new WebSocket(HOST);
             socket.onmessage = function (event) {
                 if(confirm(event.data)==true)
                     window.location.replace("/accept");

@@ -36,7 +36,7 @@
             window.WebSocket = window.MozWebSocket;
         }
         if (window.WebSocket) {
-            var HOST = location.origin.replace(/^https/, 'ws')
+            var HOST = location.origin.replace(/^https/, 'wss')
             socket = new WebSocket(HOST);
             socket.onmessage = function (event) {
                 alert(event.data);
